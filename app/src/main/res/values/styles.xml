@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="No_Internet_Connection">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:textColor">@android:color/black</item>
+
+    </style>
+
+
 </resources>

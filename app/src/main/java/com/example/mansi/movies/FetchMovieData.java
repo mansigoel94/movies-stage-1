@@ -4,7 +4,10 @@ package com.example.mansi.movies;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -14,8 +17,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class FetchMovieData extends AsyncTaskLoader<String> {
+public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
     private static final String PATH = "popular";
     private static final String PATH1 = "top_rated";
@@ -28,10 +32,10 @@ public class FetchMovieData extends AsyncTaskLoader<String> {
     }
 
     @Override
-    public String loadInBackground() {
+    public ArrayList<Movie> loadInBackground() {
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
-        String json = null;
+        String json;
         Uri uri = Uri.parse(BASEURL)
                 .buildUpon()
                 .appendPath(PATH)
@@ -52,7 +56,7 @@ public class FetchMovieData extends AsyncTaskLoader<String> {
         try {
             inputStream = new BufferedInputStream(urlConnection.getInputStream());
             json = readStream(inputStream);
-            Log.v(LOG_TAG, json);
+            return (getMovieDataFromJson(json));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -73,4 +77,38 @@ public class FetchMovieData extends AsyncTaskLoader<String> {
         return builder.toString();
     }
 
+    public ArrayList<Movie> getMovieDataFromJson(String json) {
+
+        ArrayList<Movie> movieArrayList = new ArrayList<>();
+
+        final String title = "original_title";
+        final String poster_path = "poster_path";
+        final String plot = "overview";
+        final String ratings = "vote_average";
+        final String date = "release_date";
+        final String results = "results";
+
+        try {
+            JSONObject root = new JSONObject(json);
+            JSONArray rootArray = root.getJSONArray(results);
+            for (int i = 0; i < rootArray.length(); i++) {
+                JSONObject currentMovie = rootArray.getJSONObject(i);
+                String movieTitle = currentMovie.getString(title);
+                String moviePoster = currentMovie.getString(poster_path);
+                String moviePlotSynopsis = currentMovie.getString(plot);
+                double voteAverage = currentMovie.getDouble(ratings);
+                String movieReleaseDate = currentMovie.getString(date);
+                //adding new movie to moviesArrayList
+                movieArrayList.add(i, new Movie(movieTitle,
+                        moviePoster,
+                        moviePlotSynopsis,
+                        voteAverage,
+                        movieReleaseDate));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return movieArrayList;
+    }
 }

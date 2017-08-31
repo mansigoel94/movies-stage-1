@@ -71,4 +71,11 @@ public class Movie implements Parcelable {
         parcel.writeDouble(mRatings);
         parcel.writeString(mReleaseDate);
     }
+
+    @Override
+    public String toString() {
+        return "Title: " + mTitle + "\n" +
+                "Plot: " + mSynopsis + "\n" +
+                "Ratings: " + mRatings + "\n";
+    }
 }

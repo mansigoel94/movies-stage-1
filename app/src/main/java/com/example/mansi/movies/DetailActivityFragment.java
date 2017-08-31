@@ -1,9 +1,15 @@
 package com.example.mansi.movies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,9 +17,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class DetailActivityFragment extends Fragment {
 
     TextView mSynopsis;
@@ -22,6 +25,7 @@ public class DetailActivityFragment extends Fragment {
     TextView mReleaseDate;
 
     public DetailActivityFragment() {
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -65,4 +69,6 @@ public class DetailActivityFragment extends Fragment {
         }
         return rootView;
     }
+
+
 }

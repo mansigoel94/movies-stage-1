@@ -17,14 +17,13 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new MainDisplayFragment())
+                    .add(R.id.container, new MainFragment())
                     .commit();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
         MenuInflater menuInflater = new MenuInflater(getBaseContext());
         menuInflater.inflate(R.menu.menu_main, menu);
         return true;

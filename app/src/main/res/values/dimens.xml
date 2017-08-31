@@ -2,5 +2,5 @@
 <resources>
     <dimen name="margin">8dp</dimen>
     <dimen name="textSize">20sp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_heading">16dp</dimen>
 </resources>

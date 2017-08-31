@@ -1,14 +1,13 @@
 package com.example.mansi.movies;
 
+import java.io.Serializable;
 
-import java.util.ArrayList;
-
-public class Movie {
-    private String mTitle;
-    private String mPoster;
-    private String mSynopsis;
-    private double mRatings;
-    private String mReleaseDate;
+public class Movie implements Serializable {
+    private String mTitle = null;
+    private String mPoster = null;
+    private String mSynopsis = null;
+    private double mRatings = -1;
+    private String mReleaseDate = null;
 
     public Movie(String title, String poster, String synopsis, double ratings, String releaseDate) {
         mTitle = title;

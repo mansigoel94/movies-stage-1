@@ -20,7 +20,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Movie movieToDisplay = (Movie) getIntent().getSerializableExtra("Movie_object");
+        Movie movieToDisplay = (Movie) getIntent().getParcelableExtra(getString(R.string.open_detail_intent_key));
 
         String title = movieToDisplay.getTitle();
         if (title != null) {

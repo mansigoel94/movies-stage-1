@@ -12,4 +12,5 @@
         /10
     </string>
     <string name="release_date">Release date</string>
+    <string name="open_detail_intent_key">Movie_object</string>
 </resources>

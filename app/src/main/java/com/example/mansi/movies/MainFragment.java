@@ -64,7 +64,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Movie selectedMovie = (Movie) adapterView.getItemAtPosition(position);
                 Intent openDetailActivity = new Intent(getActivity(), DetailActivity.class);
-                openDetailActivity.putExtra("Movie_object", selectedMovie);
+                openDetailActivity.putExtra(getString(R.string.open_detail_intent_key), selectedMovie);
                 startActivity(openDetailActivity);
             }
         });

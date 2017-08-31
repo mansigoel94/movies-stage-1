@@ -39,9 +39,8 @@ public class DetailActivity extends AppCompatActivity {
                     .into(mImageView);
 
         String releaseDate = movieToDisplay.getReleaseDate();
-        //TODO Formatting date according to local time
         if (releaseDate != null && !TextUtils.isEmpty(releaseDate)) {
-            mReleaseDate.setText(releaseDate);
+            mReleaseDate.setText(Utility.formatDate(getBaseContext(), releaseDate));
         }
         //displaying synopsis
         String synopsis = movieToDisplay.getSynopsis();

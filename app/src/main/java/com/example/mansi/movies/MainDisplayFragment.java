@@ -1,9 +1,9 @@
 package com.example.mansi.movies;
 
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -20,6 +20,7 @@ public class MainDisplayFragment extends Fragment implements LoaderManager.Loade
 
     private static final int LOADER_ID = 1;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    Context context;
     private MovieAdapter mAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
@@ -32,14 +33,14 @@ public class MainDisplayFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ArrayList<Movie> movieArrayList = new ArrayList<>();
-        Activity activityContext = getActivity();
+
+        context = getContext();
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_display, container, false);
@@ -48,7 +49,7 @@ public class MainDisplayFragment extends Fragment implements LoaderManager.Loade
         mGridview = (GridView) rootView.findViewById(R.id.gridview);
         mEmptyView = (TextView) rootView.findViewById(R.id.emptyView);
 
-        if (!Utility.isNetworkConnected(activityContext)) {
+        if (!Utility.isNetworkConnected(getContext())) {
             mGridview.setEmptyView(mEmptyView);
             return rootView;
         }
@@ -56,6 +57,8 @@ public class MainDisplayFragment extends Fragment implements LoaderManager.Loade
 
         mAdapter = new MovieAdapter(getActivity(), movieArrayList);
         mGridview.setAdapter(mAdapter);
+
+        getLoaderManager().initLoader(LOADER_ID, null, this);
 
         return rootView;
     }

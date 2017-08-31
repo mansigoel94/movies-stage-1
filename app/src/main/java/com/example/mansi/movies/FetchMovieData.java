@@ -1,9 +1,8 @@
 package com.example.mansi.movies;
 
-
-import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.content.AsyncTaskLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;

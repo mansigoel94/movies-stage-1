@@ -15,7 +15,7 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         addPreferencesFromResource(preference);
         Preference sortPreference = findPreference(getString(R.string.list_preference_key));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

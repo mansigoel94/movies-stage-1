@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:customprefix="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.mansi.movies.DetailActivity">
 
@@ -8,5 +8,5 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="Share"
-        customprefix:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
 </menu>

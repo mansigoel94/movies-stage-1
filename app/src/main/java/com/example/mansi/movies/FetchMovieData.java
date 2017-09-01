@@ -20,8 +20,6 @@ import java.util.ArrayList;
 
 public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
-    private static final String PATH = "popular";
-    private static final String PATH1 = "top_rated";
     private static final String API_KEY = "api_key";
     private static final String LOG_TAG = FetchMovieData.class.getSimpleName();
 
@@ -37,7 +35,7 @@ public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
         String json;
         Uri uri = Uri.parse(BASEURL)
                 .buildUpon()
-                .appendPath(PATH)
+                .appendPath(Utility.readPreference(getContext(), getContext().getString(R.string.list_preference_key)))
                 .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIE_DB_API_KEY)
                 .build();
         URL url = null;

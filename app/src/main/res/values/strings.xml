@@ -8,9 +8,17 @@
     <string name="users_ratings">Users Ratings</string>
 
     <string name="format_ratings">
-        <xliff:g id="actual_ratings" example="6.5">%1$.1f</xliff:g>
+        <xliff:g example="6.5" id="actual_ratings">%1$.1f</xliff:g>
         /10
     </string>
     <string name="release_date">Release date</string>
     <string name="open_detail_intent_key">Movie_object</string>
+    <string name="list_preference_key">list_preference_sorting</string>
+    <string name="list_preference_name">Display by</string>
+
+    <string name="list_preference_default_value">popular</string>
+    <string name="top_rated_value">top_rated</string>
+
+    <string name="popular_label">Most Popular</string>
+    <string name="top_rated_label">Top rated</string>
 </resources>

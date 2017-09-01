@@ -6,7 +6,7 @@
     <item
         android:id="@+id/menu_item_share"
         android:orderInCategory="100"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="Share"
         customprefix:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
 </menu>

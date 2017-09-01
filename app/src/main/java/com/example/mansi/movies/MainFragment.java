@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,9 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Movie>> {
 
     private static final int LOADER_ID = 1;
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = MainFragment.class.getSimpleName();
     Context context;
+    boolean isResumedCalledFirstTime = true;
     private MovieAdapter mAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
@@ -50,12 +52,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         mGridview = (GridView) rootView.findViewById(R.id.gridview);
         mEmptyView = (TextView) rootView.findViewById(R.id.emptyView);
 
-        if (!Utility.isNetworkConnected(getContext())) {
-            mGridview.setEmptyView(mEmptyView);
-            return rootView;
-        }
-        mProgressBar.setVisibility(View.VISIBLE);
-
         mAdapter = new MovieAdapter(getActivity(), movieArrayList);
         mGridview.setAdapter(mAdapter);
 
@@ -69,13 +65,24 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
             }
         });
 
-        getLoaderManager().initLoader(LOADER_ID, null, this);
-
         return rootView;
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (!Utility.isNetworkConnected(getContext())) {
+            mGridview.setEmptyView(mEmptyView);
+            return;
+        }
+        mProgressBar.setVisibility(View.VISIBLE);
+        //Restarting loader instead of initLoader to refresh data everytime after preference changes in SettingsActivity
+        getLoaderManager().restartLoader(LOADER_ID, null, this);
+    }
+
+    @Override
     public Loader<ArrayList<Movie>> onCreateLoader(int i, Bundle bundle) {
+        mAdapter.clear();
         return new FetchMovieData(getContext());
     }
 

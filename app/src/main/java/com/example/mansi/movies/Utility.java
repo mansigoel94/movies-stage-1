@@ -44,9 +44,9 @@ public class Utility {
         return dateFormat.format(date);
     }
 
-    public static String readPreference(Context context, String key) {
+    public static String readPreference(Context context, String key, String defaultValue) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String value = sharedPreferences.getString(key, "");
+        String value = sharedPreferences.getString(key, defaultValue);
         return value;
     }
 }

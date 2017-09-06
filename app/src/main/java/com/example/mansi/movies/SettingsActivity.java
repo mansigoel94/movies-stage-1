@@ -8,15 +8,13 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
-import static com.example.mansi.movies.R.xml.preference;
-
 public class SettingsActivity extends PreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(preference);
+        addPreferencesFromResource(R.xml.preference);
         Preference sortPreference = findPreference(getString(R.string.list_preference_key));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String selectedValue = sharedPreferences.getString(getString(R.string.list_preference_key), "");

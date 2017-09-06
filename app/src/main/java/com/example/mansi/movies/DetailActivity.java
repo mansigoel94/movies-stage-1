@@ -38,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     public Intent createShareIntent() {
         Movie selectedMovie = (Movie) getIntent().getParcelableExtra(getString(R.string.open_detail_intent_key));
         Intent shareIntent = new Intent(Intent.ACTION_SEND)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
                 .putExtra(Intent.EXTRA_TEXT, selectedMovie.toString())
                 .setType("text/plain");
         if (shareIntent.resolveActivity(getPackageManager()) != null) {

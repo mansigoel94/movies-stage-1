@@ -35,7 +35,10 @@ public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
         String json;
         Uri uri = Uri.parse(BASEURL)
                 .buildUpon()
-                .appendPath(Utility.readPreference(getContext(), getContext().getString(R.string.list_preference_key)))
+                .appendPath(Utility.readPreference(
+                        getContext(),
+                        getContext().getString(R.string.list_preference_key),
+                        getContext().getString(R.string.list_preference_default_value)))
                 .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIE_DB_API_KEY)
                 .build();
         URL url = null;
